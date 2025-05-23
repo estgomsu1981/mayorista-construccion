@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayorista Construcción</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #FDFEFE;
+      color: #2C3E50;
+    }
+    header {
+      background-color: #2C3E50;
+      color: white;
+      padding: 0.5rem 2rem;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      color: white;
+      text-decoration: none;
+    }
+    .logo {
+      max-height: 80px;
+      display: block;
+    }
+    .section {
+      text-align: center;
+      padding: 2rem;
+    }
+    img.catalog {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    footer {
+      background-color: #2C3E50;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+  
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #BDC3C7;
+      min-width: 200px;
+      z-index: 1;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #2C3E50;
+      text-decoration: none;
+    }
+    .dropdown-content a:hover {
+      background-color: #E67E22;
+      color: white;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+
+
+    .main-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .main-menu > * {
+      position: relative;
+    }
+    .main-menu a {
+      color: white;
+      text-decoration: none;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #BDC3C7;
+      min-width: 200px;
+      z-index: 1;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #2C3E50;
+      text-decoration: none;
+    }
+    .dropdown-content a:hover {
+      background-color: #E67E22;
+      color: white;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <img src="images/logo.png" alt="Logo Mayorista Construcción" class="logo">
+    
+    <nav class="main-menu">
+      <a href="index.html">Inicio</a>
+      <div class="dropdown">
+        <a href="#">Catálogo</a>
+        <div class="dropdown-content">
+          <a href="cemento.html">Cemento</a>
+          <a href="#">Bloques y Ladrillos</a>
+          <a href="#">Varillas y Acero</a>
+          <a href="#">Herramientas</a>
+          <a href="#">Madera</a>
+          <a href="#">Acabados</a>
+        </div>
+      </div>
+      <a href="#">Rebajas</a>
+      <a href="#">Ayuda</a>
+      <a href="#">Contacto</a>
+    <a href="carrito.html"><img src="images/carrito.png" alt="Carrito" style="height: 24px; vertical-align: middle;"></a></nav>
+
+  </div>
+</header>
+
+<section class="section">
+  <a href="cemento.html"><img src="images/categorias-rebajas.png" usemap="#map-categorias" alt="Contenido limpio sin menú ni borde" class="catalog"></a>
+</section>
+
+<footer>
+  <p>© 2025 Mayorista Construcción. Todos los derechos reservados.</p>
+</footer>
+
+
+<map name="map-categorias">
+  <area shape="rect" coords="0,0,338,1346" href="cemento.html" alt="Cemento">
+</map>
+</body>
+</html>
