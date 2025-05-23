@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solicitar Cotización - Mayorista Construcción</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #FDFEFE;
+      color: #2C3E50;
+    }
+    header {
+      background-color: #2C3E50;
+      color: white;
+      padding: 0.5rem 2rem;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      color: white;
+      text-decoration: none;
+    }
+    .logo {
+      max-height: 80px;
+      display: block;
+    }
+    .section {
+      text-align: center;
+      padding: 2rem;
+    }
+    img.catalog {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    footer {
+      background-color: #2C3E50;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+  
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #BDC3C7;
+      min-width: 200px;
+      z-index: 1;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #2C3E50;
+      text-decoration: none;
+    }
+    .dropdown-content a:hover {
+      background-color: #E67E22;
+      color: white;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+
+
+    .main-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .main-menu > * {
+      position: relative;
+    }
+    .main-menu a {
+      color: white;
+      text-decoration: none;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #BDC3C7;
+      min-width: 200px;
+      z-index: 1;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #2C3E50;
+      text-decoration: none;
+    }
+    .dropdown-content a:hover {
+      background-color: #E67E22;
+      color: white;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <img src="images/logo.png" alt="Logo Mayorista Construcción" class="logo">
+    
+    <nav class="main-menu">
+      <a href="index.html">Inicio</a>
+      <div class="dropdown">
+        <a href="#">Catálogo</a>
+        <div class="dropdown-content">
+          <a href="cemento.html">Cemento</a>
+          <a href="#">Bloques y Ladrillos</a>
+          <a href="#">Varillas y Acero</a>
+          <a href="#">Herramientas</a>
+          <a href="#">Madera</a>
+          <a href="#">Acabados</a>
+        </div>
+      </div>
+      <a href="#">Rebajas</a>
+      <a href="#">Ayuda</a>
+      <a href="#">Contacto</a>
+    <a href="carrito.html"><img src="images/carrito.png" alt="Carrito" style="height: 24px; vertical-align: middle;"></a></nav>
+
+  </div>
+</header>
+
+<section class="section" style="max-width: 600px; margin: auto;">
+  <h2>👷 Asistente de Cotización</h2>
+  <p>Hola, soy tu asistente virtual. Por favor, proporcioná los siguientes datos para preparar tu cotización. Podés adjuntar una imagen opcional.</p>
+
+  
+  <h3>📝 Tu pedido:</h3>
+  <table id="resumen-pedido" style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
+    <thead>
+      <tr style="background-color: #BDC3C7;">
+        <th style="border: 1px solid #ccc; padding: 0.5rem;">Producto</th>
+        <th style="border: 1px solid #ccc; padding: 0.5rem;">Cantidad</th>
+        <th style="border: 1px solid #ccc; padding: 0.5rem;">Precio Unitario</th>
+        <th style="border: 1px solid #ccc; padding: 0.5rem;">Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+<form id="form-cotizacion" style="display: flex; flex-direction: column; gap: 1rem;">
+    <label>Nombre completo:
+      <input type="text" name="nombre" required />
+    </label>
+    <label>Empresa (opcional):
+      <input type="text" name="empresa" />
+    </label>
+    <label>Correo electrónico:
+      <input type="email" name="correo" required />
+    </label>
+    <label>Teléfono:
+      <input type="tel" name="telefono" required />
+    </label>
+    <label>Detalles del pedido:
+      <textarea name="comentarios" rows="4" required></textarea>
+    </label>
+    <label>Imagen de referencia (opcional):
+      <input type="file" name="imagen" accept="image/*" />
+    </label>
+    <button type="submit" style="background-color: #F1C40F; padding: 0.75rem; font-size: 1rem; border: none; color: #2C3E50; border-radius: 4px;">Enviar solicitud</button>
+  </form>
+
+  <div id="confirmacion-final" style="display:none; background-color:#FDFEFE; border:2px solid #BDC3C7; padding:1rem; margin-top:2rem; border-radius:8px;"></div>
+<p id="respuesta-ia" style="margin-top: 1rem; color: #2C3E50;"></p>
+</section>
+
+<footer>
+  <p>© 2025 Mayorista Construcción. Todos los derechos reservados.</p>
+</footer>
+
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const cuerpo = document.querySelector("#resumen-pedido tbody");
+    let total = 0;
+    carrito.forEach(item => {
+      const subtotal = item.cantidad * item.precio;
+      total += subtotal;
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td style="border: 1px solid #ccc; padding: 0.5rem;">${item.nombre}</td>
+        <td style="border: 1px solid #ccc; padding: 0.5rem;">${item.cantidad}</td>
+        <td style="border: 1px solid #ccc; padding: 0.5rem;">₡${item.precio.toLocaleString()}</td>
+        <td style="border: 1px solid #ccc; padding: 0.5rem;">₡${subtotal.toLocaleString()}</td>
+      `;
+      cuerpo.appendChild(fila);
+    });
+
+    const form = document.getElementById("form-cotizacion");
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nombre = this.nombre.value.trim();
+      const comentario = this.comentarios.value.toLowerCase();
+      if (!nombre || comentario.includes("****") || comentario.includes("malas palabras")) {
+        document.getElementById("respuesta-ia").textContent = "⚠️ Por favor, revisá tu información. Evitá contenido inadecuado.";
+        return;
+      }
+
+      const confirmacion = document.getElementById("confirmacion-final");
+      confirmacion.style.display = "block";
+
+      const resumen = carrito.map(i => {
+        const subtotal = i.precio * i.cantidad;
+        return `<tr>
+          <td style='border: 1px solid #ccc; padding: 0.5rem;'>${i.nombre}</td>
+          <td style='border: 1px solid #ccc; padding: 0.5rem;'>${i.cantidad}</td>
+          <td style='border: 1px solid #ccc; padding: 0.5rem;'>₡${i.precio.toLocaleString()}</td>
+          <td style='border: 1px solid #ccc; padding: 0.5rem;'>₡${subtotal.toLocaleString()}</td>
+        </tr>`;
+      }).join("");
+
+      confirmacion.innerHTML = `
+        <h3>📨 Solicitud enviada</h3>
+        <p>Gracias, <strong>${nombre}</strong>. Hemos recibido tu solicitud.</p>
+        <p>Un asesor se comunicará con vos muy pronto para darte seguimiento.</p>
+        <p><em>Este es el resumen de tu pedido:</em></p>
+        <table style='width: 100%; border-collapse: collapse;'>
+          <thead style='background-color:#BDC3C7;'>
+            <tr>
+              <th style='border: 1px solid #ccc; padding: 0.5rem;'>Producto</th>
+              <th style='border: 1px solid #ccc; padding: 0.5rem;'>Cantidad</th>
+              <th style='border: 1px solid #ccc; padding: 0.5rem;'>Precio Unitario</th>
+              <th style='border: 1px solid #ccc; padding: 0.5rem;'>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>${resumen}</tbody>
+        </table>
+        <p style='text-align: right;'><strong>Total estimado:</strong> ₡${total.toLocaleString()}</p>
+      `;
+      document.getElementById("respuesta-ia").textContent = "";
+      this.style.display = "none";
+      localStorage.removeItem("carrito");
+    });
+  });
+</script>
+</body>
+
+
+
+
+</html>
